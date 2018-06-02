@@ -1,0 +1,17 @@
+﻿@model List<CardOnlineShop.Areas.Admin.Models.DataModel.SubMenu>
+
+<div class="menu-sidebar__content js-scrollbar1">
+    <nav class="navbar-sidebar">
+        <ul class="list-unstyled navbar__list">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="@item.Link"><i class="@item.Icon"></i> @item.SubMenuName</a>
+                </li>
+            }
+
+        </ul>
+
+    </nav>
+</div>
+<div class="clear"></div>

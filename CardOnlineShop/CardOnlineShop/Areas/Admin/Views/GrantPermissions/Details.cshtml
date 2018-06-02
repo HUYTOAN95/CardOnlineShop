@@ -1,0 +1,45 @@
+﻿@model CardOnlineShop.Areas.Admin.Models.DataModel.GrantPermissions
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh sách người dùng
+}
+
+<div>
+    <h4>GrantPermissions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Administrator.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Administrator.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PemissionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PemissionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrpition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrpition)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PermissionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,45 @@
+﻿@model CardOnlineShop.Areas.Admin.Models.DataModel.BillDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh sách người dùng
+}
+
+<div>
+    <h4>BillDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bill.EmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bill.EmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quanlity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quanlity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BillDetailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
