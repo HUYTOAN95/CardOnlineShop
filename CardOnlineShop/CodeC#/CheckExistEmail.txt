@@ -1,0 +1,41 @@
+using xNet;
+using HtmlAgilityPack;
+private void btnValidate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                HttpRequest httpRequest = new HttpRequest();
+                httpRequest.Cookies = new CookieDictionary();
+                httpRequest.UserAgent = Http.ChromeUserAgent();
+                RequestParams para = new RequestParams();
+                para["email"] = txtEmail.Text;
+ 
+                string html = httpRequest.Post("https://www.infobyip.com/verifyemailaccount.php", para).ToString();
+ 
+ 
+                var page = new HtmlAgilityPack.HtmlDocument();
+                page.LoadHtml(html);
+                var list = "";
+                if (page.DocumentNode.SelectSingleNode("//td[@id='output']//td[@class='left']//img[4]") != null)
+                {
+                    list = page.DocumentNode.SelectSingleNode("//td[@id='output']//td[@class='left']//img[4]").NextSibling.InnerText;
+                }
+                else
+                {
+                    list = page.DocumentNode.SelectSingleNode("//td[@id='output']//td[@class='left']").InnerText;
+                    string[] arr = list.Split('.');
+                    int count = arr.Length - 1;
+                    list = arr[count];
+ 
+                }
+ 
+                lblResult.Text = list;
+ 
+            }
+            catch (Exception ex)
+            {
+ 
+                MessageBox.Show(ex.Message);
+            }
+ 
+        }

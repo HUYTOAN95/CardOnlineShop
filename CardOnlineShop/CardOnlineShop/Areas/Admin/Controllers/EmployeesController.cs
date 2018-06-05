@@ -20,6 +20,11 @@ namespace CardOnlineShop.Areas.Admin.Controllers
         {
             return View(db.Employees.ToList());
         }
+        //GET: Admin/Employees/Json
+        public ActionResult GetJS()
+        {
+            return Json(db.Employees.ToList(), JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Admin/Employees/Details/5
         public ActionResult Details(string id)

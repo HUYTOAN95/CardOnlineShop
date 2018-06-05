@@ -1,0 +1,47 @@
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+ 
+namespace DataSet2Json
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+ 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DataSet dataSet = new DataSet("dataSet");
+            dataSet.Namespace = "NetFrameWork";
+            DataTable table = new DataTable();
+            DataColumn idColumn = new DataColumn("id", typeof(int));
+            idColumn.AutoIncrement = true;
+ 
+            DataColumn itemColumn = new DataColumn("item");
+            table.Columns.Add(idColumn);
+            table.Columns.Add(itemColumn);
+            dataSet.Tables.Add(table);
+ 
+            for (int i = 0; i < 1000; i++)
+            {
+                DataRow newRow = table.NewRow();
+                newRow["item"] = "item " + i;
+                table.Rows.Add(newRow);
+            }
+ 
+            dataSet.AcceptChanges();
+ 
+            string json = JsonConvert.SerializeObject(dataSet, Formatting.Indented);
+            richTextBox1.Text = json;
+        }
+    }
+}

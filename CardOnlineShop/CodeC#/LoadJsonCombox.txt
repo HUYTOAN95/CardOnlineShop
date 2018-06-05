@@ -1,0 +1,25 @@
+void loadCombo()
+        {
+            string json = File.ReadAllText("quan.txt");
+            DataTable temp = new DataTable();
+            temp.Columns.Add("value", typeof(string));
+            temp.Columns.Add("name", typeof(string));
+
+            JArray jarr = JArray.Parse(json);
+            foreach (JObject content in jarr.Children<JObject>())
+            {
+                foreach (JProperty prop in content.Properties())
+                {
+                    string tempValue = (string)prop.Name;
+                    JObject id = (JObject)prop.Value;
+                    string value = (string)id["id"];
+                    string name = (string)id["name"];
+                    temp.Rows.Add(value, name);
+                }
+            }
+
+            cbo_select.Properties.DataSource = temp;
+            cbo_select.Properties.DisplayMember = "name";
+            cbo_select.Properties.ValueMember = "id";
+
+        }
